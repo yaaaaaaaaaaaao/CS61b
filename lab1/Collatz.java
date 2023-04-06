@@ -6,8 +6,11 @@ public class Collatz {
     /** Buggy implementation of nextNumber! */
     public static int nextNumber(int n) {
 
+
         /** Returns collatz numbers, if n=1, returns 1;
          * if n even, n/2;
+        /** Returns collatz numbers, if n=1, returns 1,
+         * if n even, n/2
          * if n odd, 3*n +1
          */
 
