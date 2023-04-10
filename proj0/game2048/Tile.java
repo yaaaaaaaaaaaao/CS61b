@@ -15,6 +15,8 @@ public class Tile {
         this.next = null;
     }
 
+
+
     /** Return my current row. */
     public int row() {
         return row;

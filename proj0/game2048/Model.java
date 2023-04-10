@@ -94,7 +94,7 @@ public class Model extends Observable {
         setChanged();
     }
 
-    /** Tilt the board toward SIDE. Return true iff this changes the board.
+    /** Tilt the board toward SIDE. Return true if this changes the board.
      *
      * 1. If two Tile objects are adjacent in the direction of motion and have
      *    the same value, they are merged into one Tile of twice the original
@@ -113,7 +113,64 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+        board.setViewingPerspective(side);
 
+//        for (int col = 0; col < board.size(); col += 1) {
+//            for (int row = board.size() - 1; row >= 0; row -= 1) {
+//                Tile t1 = board.tile(col, row);
+//                if (t1 != null) {
+//                    for (int row2 = row - 1; row2 >= 0; row2 -= 1) {
+//                        Tile t2 = board.tile(col, row2);
+//                        if (t2 != null) {
+//                            if (t1.value() == t2.value()) {
+//                                board.move(col, row, t2);
+//                                changed = true;
+//                                score += 2 * t1.value();
+//                                row = row2;
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
+        int bSize = board.size();
+        /** iterate from the top row i */
+        for (int j = 0; j < bSize; j++) {
+            int limit = bSize;
+            for (int i = bSize - 1; i >= 0; i--){
+                /** move to top if empty space exists */
+                Tile t = board.tile(j, i);
+                if (t != null) {
+
+                    for (int steps = 1; i + steps < limit; steps++) {
+                        Tile t2 = board.tile(j, i + steps);
+                        /** move to top */
+                        if (t2 == null) {
+                            board.move(j, i + steps, t);
+                            /** avoid moving twice*/
+                            t = board.tile(j, i + steps);
+                            changed = true;
+                        }
+
+                        /** check if the values are same */
+                        if (t2 != null) {
+                            if (t.value() == t2.value()) {
+                                board.move(j, i + steps, t);
+                                this.score += t.value() * 2;
+                                t = board.tile(j, i + steps);
+                                changed = true;
+                                limit -= 1;
+
+                         }
+                    }
+                }
+            }
+        }
+        }
+
+        board.setViewingPerspective(Side.NORTH);
         checkGameOver();
         if (changed) {
             setChanged();
@@ -138,6 +195,13 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
+        for(int i = 0; i < b.size(); i++){
+            for(int j = 0;j < b.size(); j ++){
+                if(b.tile(i,j) == null){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -148,6 +212,15 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
+        for(int i = 0; i < b.size(); i++){
+            for(int j = 0;j < b.size(); j ++){
+                if (b.tile(i,j) != null){
+                    if(b.tile(i,j).value() == MAX_PIECE) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
@@ -159,7 +232,45 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        /** return true if there is an empty space */
+        if (emptySpaceExists(b)){
+            return true;
+        }
+        /** return true if two adjacent tiles with the same value */
+        else if (sameValueAdjacent(b) ) {
+            return true;
+        }
         return false;
+    }
+
+    /** a helper function that returns if two adjacent tiles with the same value */
+    public static boolean sameValueAdjacent(Board b){
+        boolean sameValueAdjacent = false;
+        int bSize = b.size();
+        for(int i = 0; i < bSize; i++){
+            for(int j = 0; j < bSize; j ++){
+                for(int k = -1; k <= 1; k ++){
+                    if (i + k < 0 || i + k >= bSize || k == 0){
+                        continue;
+                    } else if ((b.tile(i,j) != null) && (b.tile(i + k, j) != null)) {
+                        if (b.tile(i, j).value() == b.tile(i + k, j).value()) {
+                            sameValueAdjacent = true;
+                            }
+                        }
+                }
+
+                for(int k = -1; k <= 1; k ++){
+                    if (j + k < 0 || j + k >= bSize || k == 0){
+                        continue;
+                    } else if ((b.tile(i,j) != null) && (b.tile(i, j + k) != null)) {
+                        if (b.tile(i, j).value() == b.tile(i, j + k).value()) {
+                            sameValueAdjacent = true;
+                        }
+                    }
+                }
+            }
+        }
+        return sameValueAdjacent;
     }
 
 
