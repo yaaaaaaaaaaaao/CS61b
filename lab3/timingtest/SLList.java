@@ -23,7 +23,7 @@ public class SLList<Item> {
 		size = 0;
 	}
 
-	public SLList(Item x) {
+	public SLList(int i, Item x) {
 		sentinel = new IntNode(null, null);
 		sentinel.next = new IntNode(x, null);
 		size = 1;
