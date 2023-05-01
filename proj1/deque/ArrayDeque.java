@@ -41,11 +41,14 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
 
 
     public T get(int index){
-        return items[index];
+        return items[nextFirst + index + 1];
     }
 
     public T removeFirst(){
-        if((size > 16) && (size < items.length / 4)){
+        if (size == 0) {
+            return null;
+        }
+        if( (size > 16) && (size < items.length / 4)){
             resize(items.length / 4, 1);
         }
         T First = items[nextFirst + 1];
@@ -55,7 +58,10 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         return First;
     }
     public T removeLast(){
-        if((size > 16) && (size < items.length / 4)){
+        if (size == 0) {
+            return null;
+        }
+        if ( (size > 16) && (size < items.length / 4)){
             resize(items.length / 4, 1);
         }
         T Last = items[nextLast - 1];
@@ -169,11 +175,13 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
 //            ad.addFirst(i);
 //        }
 //        ad.printDeque();
-//        for(int i = 0; i < 15; i ++){
+//        for(int i = 0; i < 10; i ++){
 //            ad.removeFirst();
+//            ad.removeLast();
 //        }
+//        ad.removeLast();
 //        ad.printDeque();
-//        //System.out.println(ad.size());
+//        System.out.println(ad.size());
 //    }
 
 }
