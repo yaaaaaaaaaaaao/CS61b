@@ -4,9 +4,10 @@ import org.junit.Test;
 import student.StudentArrayDeque;
 import edu.princeton.cs.introcs.StdRandom;
 
+
 public class TestArrayDequeEC {
     @Test
-    public static void main(String[] args) {
+    public void basicRandomizedTest() {
         ArrayDequeSolution<Integer> solution = new ArrayDequeSolution();
         StudentArrayDeque<Integer> student = new StudentArrayDeque();
         StringBuilder errorMessage = new StringBuilder();
