@@ -115,8 +115,12 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
 
     /** Returns true if o and this has the same content */
     @Override
-    public boolean equals(Object o){
-        if(o instanceof ArrayDeque otherArray){
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if(o instanceof ArrayDeque) {
+            ArrayDeque otherArray = (ArrayDeque) o;
             if (otherArray.size() != this.size()) {
                 return false;
             }
@@ -156,21 +160,21 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
 
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-        for(int i = 10; i < 20; i ++){
-            ad.addLast(i);
-        }
-        for(int i = 9; i >= 0; i --){
-            ad.addFirst(i);
-        }
-        ad.printDeque();
-        for(int i = 0; i < 15; i ++){
-            ad.removeFirst();
-        }
-        ad.printDeque();
-        //System.out.println(ad.size());
-    }
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+//        for(int i = 10; i < 20; i ++){
+//            ad.addLast(i);
+//        }
+//        for(int i = 9; i >= 0; i --){
+//            ad.addFirst(i);
+//        }
+//        ad.printDeque();
+//        for(int i = 0; i < 15; i ++){
+//            ad.removeFirst();
+//        }
+//        ad.printDeque();
+//        //System.out.println(ad.size());
+//    }
 
 }
 
