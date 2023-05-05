@@ -22,7 +22,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     public void addFirst(T item) {
         /** resize first if needed */
         if (nextFirst < 0) {
-            resize(size * 2, 0);
+            resize(items.length * 2, 0);
         }
         items[nextFirst] = item;
         nextFirst--;
@@ -32,7 +32,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     @Override
     public void addLast(T item) {
         if (nextLast >= items.length) {
-            resize(size * 2, 1);
+            resize(items.length * 2, 1);
         }
         items[nextLast] = item;
         nextLast++;
@@ -51,11 +51,11 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if ((size > 16) && (size < items.length / 4)) {
             resize(items.length / 4, 1);
         }
-        T First = items[nextFirst + 1];
+        T firstItem = items[nextFirst + 1];
         items[nextFirst + 1] = null;
         nextFirst++;
         size--;
-        return First;
+        return firstItem;
     }
     public T removeLast() {
         if (size == 0) {
@@ -64,11 +64,11 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if ((size > 16) && (size < items.length / 4)) {
             resize(items.length / 4, 1);
         }
-        T Last = items[nextLast - 1];
+        T lastItem = items[nextLast - 1];
         items[nextLast - 1] = null;
         nextLast--;
         size--;
-        return Last;
+        return lastItem;
     }
 
 
@@ -80,18 +80,18 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     }
 
 
-    /** Resizes the ArrayDeque passes in two parameters: capacity (how many positions add in) and pos (0:front; 1:end)*/
+    /** Resizes the ArrayDeque passes in two parameters: capacity and pos */
     private void resize(int capacity, int pos) {
         //int newSize = capacity + items.length;
         T[] a = (T[]) new Object[capacity];
         // add capacity first and starts copy: start copy from position capacity
         if (pos == 0) {
-            for (int i = size; i < capacity; i += 1) {
-                a[i] = items[i - size];
+            for (int i = items.length; i < capacity; i += 1) {
+                a[i] = items[i - items.length];
             }
             items = a;
-            nextFirst = size - 1;
-            nextLast = capacity;
+            nextFirst = items.length / 2 - 1;
+            nextLast = nextFirst + size + 1;
         }
 
         // add capacity to the end and copy from pos 0: start copy from position capacity
@@ -110,7 +110,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     public void printDeque() {
         StringBuilder returnSB = new StringBuilder("");
         int startPos = nextFirst + 1;
-        for(int i = startPos; i < size + startPos; i ++){
+        for (int i = startPos; i < size + startPos; i++) {
             T item = items[i];
             returnSB.append(item);
             returnSB.append(" ");
@@ -122,16 +122,19 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     /** Returns true if o and this has the same content */
     @Override
     public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
         if (o == null || this == null) {
             return false;
         }
-        if(o instanceof ArrayDeque) {
-            ArrayDeque otherArray = (ArrayDeque) o;
+        if (o instanceof ArrayDeque) {
+            Deque otherArray = (Deque) o;
             if (otherArray.size() != this.size()) {
                 return false;
             }
-            for (int i = 0; i < this.size(); i ++) {
-                if (! items[i].equals(otherArray.items[i])){
+            for (int i = 0; i < this.size(); i++) {
+                if (!get(i).equals(otherArray.get(i))) {
                     return false;
                 }
             }
@@ -166,23 +169,17 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     }
 
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-//        for(int i = 10; i < 20; i ++){
-//            ad.addLast(i);
-//        }
-//        for(int i = 9; i >= 0; i --){
-//            ad.addFirst(i);
-//        }
-//        ad.printDeque();
-//        for(int i = 0; i < 10; i ++){
-//            ad.removeFirst();
-//            ad.removeLast();
-//        }
-//        ad.removeLast();
-//        ad.printDeque();
-//        System.out.println(ad.size());
-//    }
+    public static void main(String[] args) {
+        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+
+        for(int i = 0; i < 10; i ++){
+            ad.addFirst(i);
+            ad.removeLast();
+        }
+        ad.removeLast();
+        ad.printDeque();
+        System.out.println(ad.size());
+    }
 
 }
 
