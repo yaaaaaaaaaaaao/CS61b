@@ -181,19 +181,19 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-        LinkedListDeque<Integer> L = new LinkedListDeque();
-
-        for (int i = 0; i < 10; i++) {
-            ad.addFirst(i);
-        }
-
-        for (int i = 0; i < 10; i++) {
-            L.addFirst(i);
-        }
-        System.out.println(ad.equals(L));
-    }
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+//        LinkedListDeque<Integer> L = new LinkedListDeque();
+//
+//        for (int i = 0; i < 10; i++) {
+//            ad.addFirst(i);
+//        }
+//
+//        for (int i = 0; i < 10; i++) {
+//            L.addFirst(i);
+//        }
+//        System.out.println(ad.equals(L));
+//    }
 
 }
 
