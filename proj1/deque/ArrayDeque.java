@@ -175,24 +175,29 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             if (!hasNext()) {
                 return null;
             }
-            curr++;
-            return items[curr - 1];
+            T item = get(curr);
+            curr += 1;
+            return item;
         }
 
     }
 
 //    public static void main(String[] args) {
-//        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-//        LinkedListDeque<Integer> L = new LinkedListDeque();
+//        ArrayDeque<String> list = new ArrayDeque<>();
+//        list.addFirst("one");
+//        list.addFirst("two");
+//        list.addFirst("three");
 //
-//        for (int i = 0; i < 10; i++) {
-//            ad.addFirst(i);
+//        Iterator<String> iterator1 = list.iterator();
+//        Iterator<String> iterator2 = list.iterator();
+//
+//        while (iterator1.hasNext()) {
+//            System.out.println(iterator1.next());
 //        }
 //
-//        for (int i = 0; i < 10; i++) {
-//            L.addFirst(i);
+//        while (iterator2.hasNext()) {
+//            System.out.println(iterator2.next());
 //        }
-//        System.out.println(ad.equals(L));
 //    }
 
 }
