@@ -138,7 +138,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (o == null || this == null) {
             return false;
         }
-        if (o instanceof ArrayDeque) {
+        if (o instanceof Deque) {
             Deque otherArray = (Deque) o;
             if (otherArray.size() != this.size()) {
                 return false;
@@ -161,7 +161,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     /** Overrides ADIterator hasNext() and Next() method */
     private class ADIterator implements Iterator<T> {
-        private int pos;
         private int curr = 0;
         @Override
         public boolean hasNext() {
@@ -173,26 +172,28 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
         @Override
         public T next() {
+            if (!hasNext()) {
+                return null;
+            }
             curr++;
             return items[curr - 1];
         }
 
     }
 
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-//
-//        for (int i = 0; i < 101; i++) {
-//            ad.addFirst(i);
-//        }
-//        for (int i = 0; i < 101; i++) {
-//            ad.removeFirst();
-//        }
-//        for (int i = 0; i < 101; i++) {
-//            ad.addFirst(i);
-//        }
-//        ad.printDeque();
-//    }
+    public static void main(String[] args) {
+        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+        LinkedListDeque<Integer> L = new LinkedListDeque();
+
+        for (int i = 0; i < 10; i++) {
+            ad.addFirst(i);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            L.addFirst(i);
+        }
+        System.out.println(ad.equals(L));
+    }
 
 }
 
