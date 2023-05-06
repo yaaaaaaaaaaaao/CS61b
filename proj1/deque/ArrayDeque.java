@@ -169,17 +169,17 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-
-        for(int i = 0; i < 10; i ++){
-            ad.addFirst(i);
-            ad.removeLast();
-        }
-        ad.removeLast();
-        ad.printDeque();
-        System.out.println(ad.size());
-    }
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+//
+//        for (int i = 0; i < 10; i++) {
+//            ad.addFirst(i);
+//            ad.removeLast();
+//        }
+//        ad.removeLast();
+//        ad.printDeque();
+//        System.out.println(ad.size());
+//    }
 
 }
 
