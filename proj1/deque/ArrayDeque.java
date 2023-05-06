@@ -49,7 +49,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             return null;
         }
         if ((size > 16) && (size < items.length / 4)) {
-            resize(items.length / 4, 1);
+            resize(items.length / 4, 2);
         }
         T firstItem = items[nextFirst + 1];
         items[nextFirst + 1] = null;
@@ -62,7 +62,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             return null;
         }
         if ((size > 16) && (size < items.length / 4)) {
-            resize(items.length / 4, 1);
+            resize(items.length / 4, 2);
         }
         T lastItem = items[nextLast - 1];
         items[nextLast - 1] = null;
@@ -94,12 +94,22 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             nextLast = nextFirst + size + 1;
         }
 
-        // add capacity to the end and copy from pos 0: start copy from position capacity
+        // add capacity to the end and copy from pos nextFirst + 1
         if (pos == 1) {
             for (int i = nextFirst + 1; i < nextLast; i += 1) {
                 a[i] = items[i];
             }
             items = a;
+        }
+
+        // shrink size
+        if (pos == 2) {
+            for (int i = nextFirst + 1; i < nextLast; i += 1) {
+                a[i - nextFirst] = items[i];
+            }
+            items = a;
+            nextLast = nextLast - nextFirst;
+            nextFirst = 0;
         }
 
         //nextLast = nextLast + capacity;
@@ -172,13 +182,16 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 //    public static void main(String[] args) {
 //        ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
 //
-//        for (int i = 0; i < 10; i++) {
+//        for (int i = 0; i < 101; i++) {
 //            ad.addFirst(i);
-//            ad.removeLast();
 //        }
-//        ad.removeLast();
+//        for (int i = 0; i < 101; i++) {
+//            ad.removeFirst();
+//        }
+//        for (int i = 0; i < 101; i++) {
+//            ad.addFirst(i);
+//        }
 //        ad.printDeque();
-//        System.out.println(ad.size());
 //    }
 
 }
