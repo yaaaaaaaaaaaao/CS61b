@@ -60,7 +60,11 @@ public class BuggyAList<Item> {
       * returns deleted item. */
     public Item removeLast() {
         if ((size < items.length / 4) && (size > 4)) {
+<<<<<<< HEAD
             resize(items.length  / 4);
+=======
+            resize(size / 4);
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
         }
         Item x = getLast();
         items[size - 1] = null;

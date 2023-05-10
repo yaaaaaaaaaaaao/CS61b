@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
  * Created by hug.
  */
 public class TestBuggyAList {
+<<<<<<< HEAD
     // YOUR TESTS HERE
     @Test
     public void testThreeAddThreeRemove() {
@@ -61,4 +62,7 @@ public class TestBuggyAList {
 
         }
     }
+=======
+  // YOUR TESTS HERE
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
 }

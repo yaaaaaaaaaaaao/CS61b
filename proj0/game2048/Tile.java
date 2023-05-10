@@ -15,8 +15,11 @@ public class Tile {
         this.next = null;
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
     /** Return my current row. */
     public int row() {
         return row;

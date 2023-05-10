@@ -41,7 +41,10 @@ public class Board implements Iterable<Tile> {
                 } else {
                     tile = Tile.create(value, col, row);
                 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
                 values[col][row] = tile;
             }
         }

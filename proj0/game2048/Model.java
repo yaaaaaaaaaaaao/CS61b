@@ -5,7 +5,11 @@ import java.util.Observable;
 
 
 /** The state of a game of 2048.
+<<<<<<< HEAD
  *  @author yao
+=======
+ *  @author TODO: YOUR NAME HERE
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
  */
 public class Model extends Observable {
     /** Current contents of the board. */
@@ -94,7 +98,11 @@ public class Model extends Observable {
         setChanged();
     }
 
+<<<<<<< HEAD
     /** Tilt the board toward SIDE. Return true if this changes the board.
+=======
+    /** Tilt the board toward SIDE. Return true iff this changes the board.
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
      *
      * 1. If two Tile objects are adjacent in the direction of motion and have
      *    the same value, they are merged into one Tile of twice the original
@@ -113,6 +121,7 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+<<<<<<< HEAD
         board.setViewingPerspective(side);
 
 //        for (int col = 0; col < board.size(); col += 1) {
@@ -171,6 +180,9 @@ public class Model extends Observable {
         }
 
         board.setViewingPerspective(Side.NORTH);
+=======
+
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
         checkGameOver();
         if (changed) {
             setChanged();
@@ -195,6 +207,7 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
+<<<<<<< HEAD
         for(int i = 0; i < b.size(); i++){
             for(int j = 0;j < b.size(); j ++){
                 if(b.tile(i,j) == null){
@@ -202,6 +215,8 @@ public class Model extends Observable {
                 }
             }
         }
+=======
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
         return false;
     }
 
@@ -212,6 +227,7 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
+<<<<<<< HEAD
         for(int i = 0; i < b.size(); i++){
             for(int j = 0;j < b.size(); j ++){
                 if (b.tile(i,j) != null){
@@ -221,6 +237,8 @@ public class Model extends Observable {
                 }
             }
         }
+=======
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
         return false;
     }
 
@@ -232,6 +250,7 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+<<<<<<< HEAD
         /** return true if there is an empty space */
         if (emptySpaceExists(b)){
             return true;
@@ -273,6 +292,11 @@ public class Model extends Observable {
         return sameValueAdjacent;
     }
 
+=======
+        return false;
+    }
+
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
 
     @Override
      /** Returns the model as a string, used for debugging. */

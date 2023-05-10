@@ -23,6 +23,7 @@ public class TimeSLList {
 
     public static void timeGetLast() {
         // TODO: YOUR CODE HERE
+<<<<<<< HEAD
 
         AList<Integer> Ns = new AList<>(1);
         AList<Double> times = new AList<>(1);
@@ -52,3 +53,8 @@ public class TimeSLList {
     }
 
 
+=======
+    }
+
+}
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb

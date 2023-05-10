@@ -23,7 +23,11 @@ public class SLList<Item> {
 		size = 0;
 	}
 
+<<<<<<< HEAD
 	public SLList(int i, Item x) {
+=======
+	public SLList(Item x) {
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
 		sentinel = new IntNode(null, null);
 		sentinel.next = new IntNode(x, null);
 		size = 1;

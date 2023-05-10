@@ -7,6 +7,7 @@ package DebugExercise;
 public class DebugExercise2 {
     /** Returns the max of a and b. Do not step into this function. */
     public static int max(int a, int b) {
+<<<<<<< HEAD
 //        int w = (b - a) >> 31;
 //        /* If you're stepping into this function, click the
 //           step out button because you're not going to learn anything. */
@@ -18,11 +19,21 @@ public class DebugExercise2 {
             return a;
         }
         return b;
+=======
+        int w = (b - a) >> 31;
+        /* If you're stepping into this function, click the
+           step out button because you're not going to learn anything. */
+        int z = ~(b - a) >> 31;
+
+        int max = b & w | a & z;
+        return max;
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
     }
 
 
     /** Returns the sum of a and b. Do not step into this function. */
     public static int add(int a, int b) {
+<<<<<<< HEAD
 //        int x = a, y = b;
 //        /* If you're stepping into this function, click the
 //           step out button because you're not going to learn anything. */
@@ -38,6 +49,22 @@ public class DebugExercise2 {
 //        }
 //        return xor;
         return b;
+=======
+        int x = a, y = b;
+        /* If you're stepping into this function, click the
+           step out button because you're not going to learn anything. */
+        int xor, and, temp;
+        and = x & y;
+        xor = x ^ y;
+
+        while (and != 0) {
+            and <<= 1;
+            temp = xor ^ and;
+            and &= xor;
+            xor = temp;
+        }
+        return xor;
+>>>>>>> 160747451c147c59d8e3cbf70a7afee2b73bebdb
     }
 
     /** Returns a new array where entry i is the max of
